@@ -349,7 +349,7 @@ ensuring privacy, security, and uninterrupted connectivity.
                                                                     </div>
                                                                 </div>
                                                                 <div class="front-direction-item-title__text">
-                                                                    OORA3 WhatsApp
+                                                                   OORA3CHAT
                                                                 </div>
                                                             </div>
                                                         </div>

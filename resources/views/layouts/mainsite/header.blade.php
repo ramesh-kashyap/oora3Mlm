@@ -15,11 +15,11 @@
     <link rel="stylesheet" href="{{ asset('') }}assets/oora3/libs/toastr-master/build/toastr.min.css">
     <link rel="stylesheet" href="{{ asset('') }}assets/oora3/css/main%EF%B9%96v=32.css">
     <link rel="stylesheet" href="{{ asset('') }}assets/oora3/css/media%EF%B9%96v=32.css">
-    <link rel="icon" type="image/png" href="{{ asset('') }}assets/oora3/fav/favicon-96x96.png"
+    <link rel="icon" type="image/png" href="{{ asset('') }}assets/oora3/images/logo.png"
         sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="{{ asset('') }}assets/oora3/fav/favicon.svg" />
-    <link rel="shortcut icon" href="{{ asset('') }}assets/oora3/fav/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('') }}assets/oora3/fav/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="{{ asset('') }}assets/oora3/images/logo.png" />
+    <link rel="shortcut icon" href="{{ asset('') }}assets/oora3/images/logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('') }}assets/oora3/images/logo.png" />
     <meta name="apple-mobile-web-app-title" content="OORA3" />
 
     <style>

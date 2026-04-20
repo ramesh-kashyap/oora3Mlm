@@ -1395,15 +1395,21 @@
 
                                                 </div>
 
+                                                 @php
+                                                $sponsor = @$_GET['ref'];
+                                                $name = \App\Models\User::where('username', $sponsor)->first();
+                                            @endphp
                                                   <div class="field-block">
                                                     <div class="field field--input field--has-icon field--username">
                                                         <input placeholder="Referral Code" type="text" name="sponsor"
-                                                            maxlength="32"
+                                                            maxlength="32" value="{{ $sponsor?$sponsor:'' }}" class="check_sponsor_exist" data-response="sponsor_res"
                                                             data-inputmask-regex="^[A-Za-z.0-9_-]{1,32}$"
                                                             data-inputmask-placeholder="" autocomplete="off">
                                                         <div class="field-icon"></div>
                                                     </div>
+                                                       <small id="sponsor_res">{{ $name ? $name->name:'' }}</small>          
                                                 </div>
+                                                
 
 
                                                 <div class="checkbox-list-block">
@@ -1552,6 +1558,35 @@
 
     </div>
 
+    <script src="https://code.jquery.com//jquery-3.3.1.min.js"></script>
+
+   <script>
+        $('.check_sponsor_exist').keyup(function(e) {
+            var ths = $(this);
+            var res_area = $(ths).attr('data-response');
+            var sponsor = $(this).val();
+            // alert(sponsor); 
+            $.ajax({
+                type: "POST",
+                url: "{{ route('getUserName') }}",
+                data: {
+                    "user_id": sponsor,
+                    "_token": "{{ csrf_token() }}",
+                },
+                success: function(response) {
+                    if (response != 1) {
+                        // alert("hh");
+                        $('#' + res_area).html(response).css('color', '#fff').css('font-weight', '800')
+                            .css('margin-buttom', '10px');
+                    } else {
+                        // alert("hi");
+                        $('#' + res_area).html("Sponsor ID Not exists!").css('color', 'red').css(
+                            'margin-buttom', '10px');
+                    }
+                }
+            });
+        });
+    </script>
 
 @include('partials.notify')
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
