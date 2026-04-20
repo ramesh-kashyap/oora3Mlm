@@ -25,7 +25,7 @@ class Bonus extends Controller
     $limit = $request->limit ? $request->limit : paginationLimit();
     $status = $request->status ? $request->status : null;
     $search = $request->search ? $request->search : null;
-    $notes = Income::where('user_id', $user->id)->where('remarks', 'Farming Income')->orderBy('id', 'DESC');
+    $notes = Income::where('user_id', $user->id)->where('remarks', 'Staking Reward')->orderBy('id', 'DESC');
     if ($search <> null && $request->reset != "Reset") {
       $notes = $notes->where(function ($q) use ($search) {
         $q->Where('rname', 'LIKE', '%' . $search . '%')
@@ -41,7 +41,7 @@ class Bonus extends Controller
       ]);
     $this->data['level_income'] = $notes;
     $this->data['search'] = $search;
-    $this->data['page'] = 'user.bonus.level-income';
+    $this->data['page'] = 'user.bonus.staking-reward';
     return $this->dashboard_layout();
   }
   public function direct_bonus(Request $request)
@@ -51,7 +51,7 @@ class Bonus extends Controller
     $limit = $request->limit ? $request->limit : paginationLimit();
     $status = $request->status ? $request->status : null;
     $search = $request->search ? $request->search : null;
-    $notes = Income::where('user_id', $user->id)->where('remarks', 'Referral Income')->orderBy('id', 'DESC');
+    $notes = Income::where('user_id', $user->id)->where('remarks', 'Direct Reward')->orderBy('id', 'DESC');
     if ($search <> null && $request->reset != "Reset") {
       $notes = $notes->where(function ($q) use ($search) {
         $q->Where('rname', 'LIKE', '%' . $search . '%')
@@ -79,7 +79,7 @@ class Bonus extends Controller
     $limit = $request->limit ? $request->limit : paginationLimit();
     $status = $request->status ? $request->status : null;
     $search = $request->search ? $request->search : null;
-    $notes = Income::where('user_id', $user->id)->where('remarks', 'Salary Income')->orderBy('id', 'DESC');
+    $notes = Income::where('user_id', $user->id)->where('remarks', 'Club Reward')->orderBy('id', 'DESC');
     if ($search <> null && $request->reset != "Reset") {
       $notes = $notes->where(function ($q) use ($search) {
         $q->Where('rname', 'LIKE', '%' . $search . '%')
@@ -95,7 +95,7 @@ class Bonus extends Controller
       ]);
     $this->data['level_income'] = $notes;
     $this->data['search'] = $search;
-    $this->data['page'] = 'user.bonus.affiliate_level';
+    $this->data['page'] = 'user.bonus.club-reward';
     return $this->dashboard_layout();
   }
   
@@ -193,7 +193,7 @@ class Bonus extends Controller
     $limit = $request->limit ? $request->limit : paginationLimit();
     $status = $request->status ? $request->status : null;
     $search = $request->search ? $request->search : null;
-    $notes = Income::where('user_id', $user->id)->where('remarks', 'Recurring Income')->orderBy('id', 'DESC');
+    $notes = Income::where('user_id', $user->id)->where('remarks', 'Team Development Reward')->orderBy('id', 'DESC');
     if ($search <> null && $request->reset != "Reset") {
       $notes = $notes->where(function ($q) use ($search) {
         $q->Where('rname', 'LIKE', '%' . $search . '%')
@@ -209,10 +209,37 @@ class Bonus extends Controller
       ]);
     $this->data['level_income'] = $notes;
     $this->data['search'] = $search;
-    $this->data['page'] = 'user.bonus.daily-incentive';
+    $this->data['page'] = 'user.bonus.team-development-reward';
     return $this->dashboard_layout();
   }
 
+
+    public function StakingReferralReward(Request $request)
+  {
+    $user = Auth::user();
+
+    $limit = $request->limit ? $request->limit : paginationLimit();
+    $status = $request->status ? $request->status : null;
+    $search = $request->search ? $request->search : null;
+    $notes = Income::where('user_id', $user->id)->where('remarks', 'Staking Referral Reward')->orderBy('id', 'DESC');
+    if ($search <> null && $request->reset != "Reset") {
+      $notes = $notes->where(function ($q) use ($search) {
+        $q->Where('rname', 'LIKE', '%' . $search . '%')
+          ->orWhere('ttime', 'LIKE', '%' . $search . '%')
+          ->orWhere('level', 'LIKE', '%' . $search . '%')
+          ->orWhere('amt', 'LIKE', '%' . $search . '%')
+          ->orWhere('comm', 'LIKE', '%' . $search . '%');
+      });
+    }
+    $notes = $notes->paginate($limit)
+      ->appends([
+        'limit' => $limit
+      ]);
+    $this->data['level_income'] = $notes;
+    $this->data['search'] = $search;
+    $this->data['page'] = 'user.bonus.StakingReferralReward';
+    return $this->dashboard_layout();
+  }
 
 
   public function reward_income(Request $request)

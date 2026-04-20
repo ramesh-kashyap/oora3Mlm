@@ -501,7 +501,7 @@
 
                                                     <div class="form-button-block">
                                                         <button type="submit" class="green-gradient-btn iconed-btn">
-                                                            <div class="iconed-btn__text">Send Now</div>
+                                                            <div class="iconed-btn__text">Withdraw Now</div>
                                                             <div class="iconed-btn__icon"></div>
                                                         </button>
                                                     </div>

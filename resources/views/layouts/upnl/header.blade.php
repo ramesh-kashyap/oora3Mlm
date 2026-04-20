@@ -63,7 +63,7 @@
                                         </a>
                                     </li>
                                     <li class="db-menu-item ">
-                                        <a href="javascript:void(0)" data-module="menu" data-section="transactions" class="db-menu-link db-menu-link--transactions">
+                                        <a href="{{route('user.topupHistory')}}" data-module="menu" data-section="transactions" class="db-menu-link db-menu-link--transactions">
                                             <div class="db-menu-link__icon"></div>
                                             <div class="db-menu-link__text">Transactions</div>
                                         </a>

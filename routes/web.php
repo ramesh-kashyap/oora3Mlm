@@ -179,14 +179,14 @@ Route::any('/UsrBinaryReport',[App\Http\Controllers\UserPanel\BinaryReport::clas
 //end team
 
 //bonus 
-Route::get('/farming-income', [App\Http\Controllers\UserPanel\Bonus::class, 'index'])->name('user.farming-income');
+Route::get('/staking-reward', [App\Http\Controllers\UserPanel\Bonus::class, 'index'])->name('user.staking-reward');
 Route::get('/referral-bonus', [App\Http\Controllers\UserPanel\Bonus::class, 'direct_bonus'])->name('user.referral-bonus');
 Route::get('/contract-bonus', [App\Http\Controllers\UserPanel\Bonus::class, 'cashback_income'])->name('user.contract-bonus');
 Route::get('/reward-bonus', [App\Http\Controllers\UserPanel\Bonus::class, 'reward_income'])->name('user.reward-bonus');
-Route::get('/reccuring-bonus', [App\Http\Controllers\UserPanel\Bonus::class, 'roi_income'])->name('user.reccuring-bonus');
-Route::get('/dailyIncentive', [App\Http\Controllers\UserPanel\Bonus::class, 'dailyIncentive'])->name('user.dailyIncentive');
+Route::get('/staking-referral-bonus', [App\Http\Controllers\UserPanel\Bonus::class, 'StakingReferralReward'])->name('user.staking-referral-bonus');
+Route::get('/team-development-reward', [App\Http\Controllers\UserPanel\Bonus::class, 'dailyIncentive'])->name('user.team-development-reward');
 Route::get('/samerankprofit-bonus', [App\Http\Controllers\UserPanel\Bonus::class, 'activitiesBonus'])->name('user.samerankprofit-bonus'); 
-Route::get('/salary-bonus', [App\Http\Controllers\UserPanel\Bonus::class, 'salary_income'])->name('user.salary-bonus');
+Route::get('/club-reward', [App\Http\Controllers\UserPanel\Bonus::class, 'salary_income'])->name('user.club-reward');
 
 
 

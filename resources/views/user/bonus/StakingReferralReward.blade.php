@@ -10,7 +10,7 @@
                         <div class="col-12 col-xl-9">
                             <div class="db-page__right globalAccount globalAccountTransactions">
                                 <div class="db-page__title-block">
-                                    <h2 class="db-page__title">Direct Reward</h2>
+                                    <h2 class="db-page__title">Staking Referral Reward</h2>
                                 </div>
                                 <div class="db-page__descr-block">
                                     <div class="db-page__descr">Transaction log with detailed information about all transactions in your wallet.</div>
@@ -31,7 +31,7 @@
                                                 <div class="transactions-empty__button-block">
                                                     <button type="button" class="green-gradient-btn iconed-btn transactions-empty__button button--small optimaDepositButton">
                                                         <div class="iconed-btn__icon"></div>
-                                                        <div class="iconed-btn__text">Direct Reward
+                                                        <div class="iconed-btn__text">Staking Referral Reward
                                                         </div>
                                                     </button>
                                                 </div>

@@ -10,7 +10,7 @@
                         <div class="col-12 col-xl-9">
                             <div class="db-page__right globalAccount globalAccountTransactions">
                                 <div class="db-page__title-block">
-                                    <h2 class="db-page__title">Direct Reward</h2>
+                                    <h2 class="db-page__title">Club Reward</h2>
                                 </div>
                                 <div class="db-page__descr-block">
                                     <div class="db-page__descr">Transaction log with detailed information about all transactions in your wallet.</div>
@@ -31,7 +31,7 @@
                                                 <div class="transactions-empty__button-block">
                                                     <button type="button" class="green-gradient-btn iconed-btn transactions-empty__button button--small optimaDepositButton">
                                                         <div class="iconed-btn__icon"></div>
-                                                        <div class="iconed-btn__text">Direct Reward
+                                                        <div class="iconed-btn__text">Club Reward
                                                         </div>
                                                     </button>
                                                 </div>
@@ -92,8 +92,8 @@
                                                                                             <option data-content="&lt;div class=&quot;select-item&quot;&gt;&lt;div class=&quot;select-item-text&quot;&gt;Withdrawal&lt;/div&gt;&lt;/div&gt;" value="{{route('user.Withdraw-History')}}">Withdrawal</option>
                                                                                             <option data-content="&lt;div class=&quot;select-item&quot;&gt;&lt;div class=&quot;select-item-text&quot;&gt;Staking Reward&lt;/div&gt;&lt;/div&gt;" value="{{route('user.staking-reward')}}">Staking reward</option>
                                                                                             <option data-content="&lt;div class=&quot;select-item&quot;&gt;&lt;div class=&quot;select-item-text&quot;&gt;Direct Reward&lt;/div&gt;&lt;/div&gt;" value="{{route('user.referral-bonus')}}">Direct Reward</option>
-                                                                                            <option data-content="&lt;div class=&quot;select-item&quot;&gt;&lt;div class=&quot;select-item-text&quot;&gt;Staking Referral Reward&lt;/div&gt;&lt;/div&gt;" value="{{route('user.staking-referral-bonus')}}">Staking Referral Reward</option>
-                                                                                            <option data-content="&lt;div class=&quot;select-item&quot;&gt;&lt;div class=&quot;select-item-text&quot;&gt;Team Development Reward&lt;/div&gt;&lt;/div&gt;" value="{{route('user.team-development-reward')}}">Team Development Reward</option>
+                                                                                            <option data-content="&lt;div class=&quot;select-item&quot;&gt;&lt;div class=&quot;select-item-text&quot;&gt;Bonus&lt;/div&gt;&lt;/div&gt;" value="{{route('user.staking-referral-bonus')}}">Staking Referral Reward</option>
+                                                                                            <option data-content="&lt;div class=&quot;select-item&quot;&gt;&lt;div class=&quot;select-item-text&quot;&gt;Staking Referral Reward&lt;/div&gt;&lt;/div&gt;" value="{{route('user.team-development-reward')}}">Team Development Reward</option>
                                                                                             <option data-content="&lt;div class=&quot;select-item&quot;&gt;&lt;div class=&quot;select-item-text&quot;&gt;Club Reward&lt;/div&gt;&lt;/div&gt;" value="{{ route('user.club-reward') }}">Club Reward</option>
                                                                                         </select>
 
@@ -148,7 +148,7 @@
                                                     Amount
                                                 </div>
                                                 <div class="db-transaction-t-h-cell db-transaction-t-h-cell--status">
-                                                    From ID
+                                                    Status
                                                 </div>
                                                 <div class="db-transaction-t-h-cell db-transaction-t-h-cell--date">
                                                     Date
@@ -221,7 +221,7 @@
                                                             @php $statusClass = match($row->status) { 'Active' => 'completed', 'Pending' => 'pending', 'Decline' => 'canceled', default => 'pending' }; @endphp
 
                                                             <div class="db-transaction-t-i-status db-transaction-t-i-status--{{ $statusClass }}">
-                                                                {{ $row->rname }}
+                                                                {{ ucfirst('completed') }}
                                                             </div>
 
                                                         </div>
