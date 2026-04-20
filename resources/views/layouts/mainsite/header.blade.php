@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>OORA3 - Home</title>
+    <title>{{siteName()}}</title>
     <meta charset="utf-8" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -93,8 +93,7 @@
                                         <a href="{{route('ai-staking')}}"
                                             class="mobile-topmenu-link mobile-topmenu-link--ai-staking">
                                             <div class="mobile-topmenu-link__icon"></div>
-                                            <div class="mobile-topmenu-link__text">AI Staking
-</div>
+                                            <div class="mobile-topmenu-link__text">AI Staking</div>
                                         </a>
                                     </li>
                                     <li class="mobile-topmenu-item">
@@ -104,13 +103,13 @@
                                             <div class="mobile-topmenu-link__text">About us</div>
                                         </a>
                                     </li>
-                                    <!-- <li class="mobile-topmenu-item">
+                                    <li class="mobile-topmenu-item">
                                         <a href="{{route('affiliate')}}"
                                             class="mobile-topmenu-link mobile-topmenu-link--affiliate-program">
                                             <div class="mobile-topmenu-link__icon"></div>
                                             <div class="mobile-topmenu-link__text">Affiliate program</div>
                                         </a>
-                                    </li> -->
+                                    </li>
                                     <li class="mobile-topmenu-item mobile-topmenu-item--has-menu">
                                         <a href="javascript:void(0)" class="mobile-topmenu-link">
                                             <div class="mobile-topmenu-link__text">More</div>
@@ -141,13 +140,13 @@
                         <div class="topline-manage-buttons-block">
                             <div class="topline-manage-buttons">
                                 <div class="topline-manage-button-wrapper topline-manage-button-wrapper--sign-in">
-                                    <a href="#"
+                                    <a href="{{ route('login') }}"
                                         class="topline-sign-in-button light-black-btn button--small">
                                         Sign In
                                     </a>
                                 </div>
                                 <div class="topline-manage-button-wrapper topline-manage-button-wrapper--sign-up">
-                                    <a href="#"
+                                    <a href="{{ route('register') }}"
                                         class="topline-sign-up-button green-gradient-btn button--small">
                                         Sign Up
                                     </a>
@@ -172,7 +171,9 @@
                                         <a href="{{ asset('') }}" class="logo">
                                             <div class="logo-img">
                                                 <img class="image"
-                                                    src="{{ asset('') }}assets/oora3/images/svg/logo.png" alt="OORA3" style="width: 115px;">
+                                                    src="{{ asset('') }}assets/oora3/images/svg/logo.png" alt="OORA3" style="
+    width: 115px;
+">
                                             </div>
                                         </a>
                                     </div>
@@ -204,7 +205,8 @@
                                                 <li class="topmenu-item">
                                                     <a href="{{route('affiliate')}}"
                                                         class="topmenu-link topmenu-link--affiliate-program">
-                                                        
+                                                        <div class="topmenu-link__icon"></div>
+                                                        <div class="topmenu-link__text">Affiliate program</div>
                                                     </a>
                                                 </li>
                                               
@@ -269,14 +271,14 @@
                                         <div class="topline-manage-buttons">
                                             <div
                                                 class="topline-manage-button-wrapper topline-manage-button-wrapper--sign-in">
-                                                <a href="{{route('index')}}"
+                                                <a href="{{ route('login') }}"
                                                     class="topline-sign-in-button light-black-btn button--small">
                                                     Sign In
                                                 </a>
                                             </div>
                                             <div
                                                 class="topline-manage-button-wrapper topline-manage-button-wrapper--sign-up">
-                                                <a href="{{route('index')}}"
+                                                <a href="{{ route('register') }}"
                                                     class="topline-sign-up-button green-gradient-btn button--small">
                                                     Sign Up
                                                 </a>

@@ -138,76 +138,73 @@ class Profile extends Controller
             
     }
 
-    public function profile_update(Request $request)
-    {
-        try {
-            // Validation rules
-            $validation = Validator::make($request->all(), [
-                'name'      => 'required|string|max:255',
-                'lastname'       => 'required|string|max:255',
-                'address'        => 'nullable|string|max:255',
-                'state'          => 'nullable|string|max:255',
-                'city'           => 'nullable|string|max:255',
-                'zip'            => 'nullable|string|max:20',
-                'dob'             =>'required|string|max:255',
-                // 'usdtBep20'       => 'string|max:255',
+public function profile_update(Request $request)
+{
+    try {
 
-                // 'profile_image'  => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // max 2MB
-            ]);
-            // dd($validation);
-            if ($validation->fails()) {
-                return redirect()->back()->withErrors($validation->errors())->withInput();
-            }
-            if ($validation->fails()) {
-                $user = Auth::user();
-                return redirect()->back()
-                    ->withErrors($validation->errors())
-                    ->withInput()
-                    ->with(compact('user')); // тЬЕ send user data back to form
-            }
+        $user = Auth::user();
 
+        // 🔥 Dynamic validation (jo field aaye usi ka rule lage)
+        $rules = [];
 
-
-            // if ($request->hasFile('profile_image')) {
-            //     $image      = $request->file('profile_image');
-            //     $imageName  = 'profile_' . Str::random(10) . '.' . $image->getClientOriginalExtension();
-            //     $imagePath  = public_path('uploads/users/');
-
-            //     // Create directory if not exists
-            //     if (!File::isDirectory($imagePath)) {
-            //         File::makeDirectory($imagePath, 0755, true, true);
-            //     }
-
-            //     $image->move($imagePath, $imageName);
-
-
-            //     $user->profile_image = $imageName;
-            // }
-            $user = Auth::user();
-            if ($user->profile_updated) {
-            $notify[] = ['error', 'ЁЯЫС You have already updated your profile. Further edits require admin approval.'];
-            return redirect()->back()->withNotify($notify);
-             }
-            // Update user details
-            $user->name = $request->name;
-            $user->lastname  = $request->lastname;
-            $user->address   = $request->address;
-            // $user->usdtBep20   = $request->usdtBep20;
- $user->dob     = $request->dob;
-            $user->state     = $request->state;
-            $user->city      = $request->city;
-
-            $user->zipCode      = $request->zipCode;
-             $user->profile_updated = true;
-            $user->save();
-
-            $notify[] = ['success', 'Profile Updated Successfully!'];
-            return redirect()->back()->withNotify($notify);
-        } catch (\Exception $e) {
-            Log::error('Profile update error: ' . $e->getMessage());
-            return back()->withErrors(['error' => 'Something went wrong!'])->withInput();
+        if ($request->has('name')) {
+            $rules['name'] = 'required|string|max:255';
         }
+
+        if ($request->has('email')) {
+            $rules['email'] = 'required|email|max:255';
+        }
+
+        if ($request->has('phone')) {
+            $rules['phone'] = 'required|string|max:20';
+        }
+
+        if ($request->has('country')) {
+            $rules['country'] = 'required|string|max:100';
+        }
+
+        $validation = Validator::make($request->all(), $rules);
+
+        if ($validation->fails()) {
+            return back()->withErrors($validation)->withInput();
+        }
+
+        // ❌ optional: agar ek baar update lock karna hai to rakho
+        // if ($user->profile_updated) {
+        //     return back()->withErrors(['error' => 'Already updated']);
+        // }
+
+        // ✅ Only update fields that are sent
+        if ($request->filled('name')) {
+            $user->name = $request->name;
+        }
+
+        if ($request->filled('email')) {
+            $user->email = $request->email;
+        }
+
+        if ($request->filled('phone')) {
+            $user->phone = $request->phone;
+        }
+
+        if ($request->filled('country')) {
+            $user->country = $request->country;
+        }
+
+        $user->profile_updated = true;
+        $user->save();
+
+        return back()->with('success', 'Profile Updated Successfully!');
+
+    } catch (\Exception $e) {
+        Log::error('Profile update error: ' . $e->getMessage());
+
+        return back()->withErrors(['error' => 'Something went wrong!'])->withInput();
     }
+}
+
+
+
 
     // тЬЕ 1. рд╡реЗрд░рд┐рдлрд┐рдХреЗрд╢рди рдХреЛрдб рднреЗрдЬрдирд╛
     public function sendVerificationCode(Request $request)

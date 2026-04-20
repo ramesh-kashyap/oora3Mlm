@@ -5,6 +5,8 @@ namespace App\Http\Controllers\UserPanel;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Investment;
+
 use App\Models\Reentry;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -82,9 +84,6 @@ public function LevelTeam(Request $request)
     // Pagination limit
     $limit = $request->limit ?: paginationLimit();
 
-    // Status filter (agar future me use karna ho)
-    $status = $request->status ?: null;
-
     // Search term
     $search = $request->search ?: null;
 
@@ -99,7 +98,7 @@ public function LevelTeam(Request $request)
         }
     })->orderBy('id', 'DESC');
 
-    // Apply search if exists and not resetting
+    // Search filter
     if ($search && $request->reset != "Reset") {
         $notes = $notes->where(function ($q) use ($search) {
             $q->orWhere('name', 'LIKE', '%' . $search . '%')
@@ -111,18 +110,26 @@ public function LevelTeam(Request $request)
         });
     }
 
-    // Paginate results and append query params
+    // Paginate
     $notes = $notes->paginate($limit)->appends([
         'limit' => $limit,
         'search' => $search
     ]);
+
+    // 👉 Total Business (IMPORTANT PART)
+    $totalBusiness = Investment::whereIn('user_id', $ids)
+        ->where('status', 'Active')
+        ->sum('amount');
 
     // Data for view
     $this->data['direct_team'] = $notes;
     $this->data['search'] = $search;
     $this->data['total_team'] = $notes->count();
     $this->data['active_total_team'] = $notes->where('active_status', 'Active')->count();
+        $this->data['active_total_team_p'] = $notes->where('active_status', 'Pending')->count();
+
     $this->data['totalPackage'] = $notes->sum('package');
+    $this->data['totalBusiness'] = $totalBusiness; // 👈 ADD THIS
     $this->data['page'] = 'user.team.level-team';
 
     return $this->dashboard_layout();
