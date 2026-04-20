@@ -172,6 +172,93 @@ class Register extends Controller
 
 
     public function register(Request $request)
+{
+
+// dd($request->all());
+    try {
+
+        $type = $request->type; // email or mobile
+
+        // ✅ Dynamic validation
+        $rules = [
+            'name' => 'required',
+            'password' => 'required|min:5',
+            'sponsor' => 'required|exists:users,username',
+        ];
+
+        if ($type === 'email') {
+            $rules['email'] = 'required|email|unique:users,email';
+        }
+
+        if ($type === 'phone') {
+            $rules['phone'] = 'required|numeric|digits_between:8,15|unique:users,phone';
+        }
+
+        $validation = Validator::make($request->all(), $rules);
+
+        if ($validation->fails()) {
+            return back()->withErrors($validation)->withInput();
+        }
+
+        // ✅ Check sponsor
+        $sponsor = User::where('username', $request->sponsor)->where('active_status','Active')->first();
+        if (!$sponsor) {
+            return back()->withErrors(['sponsor' => 'Invalid Sponsor ID']);
+        }
+
+        // ✅ Generate username
+        $username = "OR".substr(time(), -2) . substr(rand(), -2) . substr(mt_rand(), -2);
+
+        $sponsor_user =  User::orderBy('id', 'desc')->limit(1)->first();
+        $data = [
+            'name' => $request->name,
+            'username' => $username,
+            'password' => Hash::make($request->password),
+            'PSR' => $request->password,
+            'country' => $request->country ?? $request->country_phone,
+            'sponsor' => $sponsor->id,
+            'ParentId' => $sponsor_user->id,
+            'level' => $sponsor->level + 1,
+            'created_at' => now(),
+            'jdate' => date('Y-m-d'),
+            'remember_token' => substr(rand(), -7) . substr(time(), -5) . substr(mt_rand(), -4),
+        ];
+
+        // ✅ Assign based on type
+        if ($type === 'email') {
+            $data['email'] = $request->email;
+        }
+
+        if ($type === 'mobile') {
+            $data['phone'] = $request->phone;
+        }
+
+        // ✅ Create user
+        $user = User::create($data);
+
+        // ✅ Send email only if email exists
+        if ($type === 'email') {
+            // sendEmail($user->email, 'Welcome to ' . siteName(), [
+            //     'name' => $user->name,
+            //     'username' => $user->username,
+            //     'password' => $request->password,
+            //     'viewpage' => 'register_sucess',
+            //     'link' => route('login'),
+            // ]);
+        }
+
+        // return redirect()->route('register_sucess')->with('messages', $user);
+
+         return redirect()->route('login')->with('notify', [['success', 'Account created successfully! Thank you for registering.']]);
+
+
+
+    } catch (\Exception $e) {
+        return back()->withErrors(['error' => $e->getMessage()]);
+    }
+}
+
+    public function register33(Request $request)
     {
         try {
             $validation =  Validator::make($request->all(), [

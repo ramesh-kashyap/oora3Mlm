@@ -105,12 +105,17 @@
                                         </a>
                                     </li>
                                     <li class="db-menu-item">
-                                        <a href="/en/logout/" class="db-menu-link db-menu-link--logout">
+                                        <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="db-menu-link db-menu-link--logout">
                                             <div class="db-menu-link__icon"></div>
                                             <div class="db-menu-link__text">Log out</div>
                                         </a>
                                     </li>
                                 </ul>
+
+                                   <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
                             </div>
                         </div>
 
@@ -122,25 +127,25 @@
                             <div class="mobile-topmenu mobile-topmenu--db">
                                 <ul class="mobile-topmenu-list">
                                     <li class="mobile-topmenu-item">
-                                        <a href="/en/crypto-wallet/" class="mobile-topmenu-link mobile-topmenu-link--wallet">
+                                        <a href="{{route('wallets')}}" class="mobile-topmenu-link mobile-topmenu-link--wallet">
                                             <div class="mobile-topmenu-link__icon"></div>
                                             <div class="mobile-topmenu-link__text">Wallet</div>
                                         </a>
                                     </li>
                                     <li class="mobile-topmenu-item">
-                                        <a href="/en/ai-staking/" class="mobile-topmenu-link mobile-topmenu-link--ai-staking">
+                                        <a href="{{route('ai-staking')}}" class="mobile-topmenu-link mobile-topmenu-link--ai-staking">
                                             <div class="mobile-topmenu-link__icon"></div>
                                             <div class="mobile-topmenu-link__text">AI Staking</div>
                                         </a>
                                     </li>
                                     <li class="mobile-topmenu-item">
-                                        <a href="/en/crypto-loans/" class="mobile-topmenu-link mobile-topmenu-link--loans">
+                                        <a href="{{route('about-us')}}" class="mobile-topmenu-link mobile-topmenu-link--loans">
                                             <div class="mobile-topmenu-link__icon"></div>
-                                            <div class="mobile-topmenu-link__text">Crypto Loans</div>
+                                            <div class="mobile-topmenu-link__text">About Us</div>
                                         </a>
                                     </li>
                                     <li class="mobile-topmenu-item">
-                                        <a href="/en/affiliate-program/" class="mobile-topmenu-link mobile-topmenu-link--affiliate-program">
+                                        <a href="{{route('affiliate')}}" class="mobile-topmenu-link mobile-topmenu-link--affiliate-program">
                                             <div class="mobile-topmenu-link__icon"></div>
                                             <div class="mobile-topmenu-link__text">Affiliate program</div>
                                         </a>
@@ -150,29 +155,17 @@
                                             <div class="mobile-topmenu-link__text">More</div>
                                         </a>
                                         <div class="mobile-submenu">
-                                            <div class="mobile-submenu-item">
-                                                <a href="/en/fees-and-limits/" class="mobile-submenu-link">Fees and Limits</a>
-                                            </div>
-                                            <div class="mobile-submenu-item">
-                                                <a href="/en/help-center/" class="mobile-submenu-link">Help center</a>
-                                            </div>
-                                            <div class="mobile-submenu-item">
-                                                <a href="/en/learn/" class="mobile-submenu-link">OORA3 Learn</a>
-                                            </div>
-                                            <div class="mobile-submenu-item">
-                                                <a href="/en/bounty/" class="mobile-submenu-link">Bounty</a>
-                                            </div>
-                                            <div class="mobile-submenu-item">
-                                                <a href="/en/news/" class="mobile-submenu-link">Blog</a>
-                                            </div>
+                                          
+                                          
+                                          
                                             <div class="mobile-submenu-item">
                                                 <a href="/en/about-us/" class="mobile-submenu-link">About Us</a>
                                             </div>
                                             <div class="mobile-submenu-item">
-                                                <a href="/en/roadmap/" class="mobile-submenu-link">Roadmap</a>
+                                                <a href="{{route('roadmap')}}" class="mobile-submenu-link">Roadmap</a>
                                             </div>
                                             <div class="mobile-submenu-item">
-                                                <a href="/en/contact-us/" class="mobile-submenu-link">Contact Us</a>
+                                                <a href="{{route('contact-us')}}" class="mobile-submenu-link">Contact Us</a>
                                             </div>
                                         </div>
                                     </li>
@@ -183,7 +176,8 @@
                     </div>
                     <div class="db-mobile-panel-bottom">
                         <div class="db-mobile-panel-logout-button-block">
-                            <a href="/en/logout/" class="db-mobile-panel-logout-button light-black-btn iconed-btn button--small">
+                            <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="db-mobile-panel-logout-button light-black-btn iconed-btn button--small">
                                 <div class="iconed-btn__text">Log out</div>
                                 <div class="iconed-btn__icon"></div>
                             </a>
@@ -219,66 +213,38 @@
                                         <div class="db-topmenu">
                                             <ul class="db-topmenu-list">
                                                 <li class="db-topmenu-item">
-                                                    <a href="/en/crypto-wallet/" class="db-topmenu-link db-topmenu-link--wallet">
+                                                    <a href="{{route('wallets')}}" class="db-topmenu-link db-topmenu-link--wallet">
                                                         <div class="db-topmenu-link__icon"></div>
                                                         <div class="db-topmenu-link__text">Wallet</div>
                                                     </a>
                                                 </li>
                                                 <li class="db-topmenu-item">
-                                                    <a href="/en/ai-staking/" class="db-topmenu-link db-topmenu-link--ai-staking">
+                                                    <a href="{{route('ai-staking')}}" class="db-topmenu-link db-topmenu-link--ai-staking">
                                                         <div class="db-topmenu-link__icon"></div>
                                                         <div class="db-topmenu-link__text">AI Staking</div>
                                                     </a>
                                                 </li>
                                                 <li class="db-topmenu-item">
-                                                    <a href="/en/crypto-loans/" class="db-topmenu-link db-topmenu-link--loans">
+                                                    <a href="{{route('about-us')}}" class="db-topmenu-link db-topmenu-link--loans">
                                                         <div class="db-topmenu-link__icon"></div>
-                                                        <div class="db-topmenu-link__text">Crypto Loans</div>
-                                                    </a>
-                                                </li>
-                                                <li class="db-topmenu-item">
-                                                    <a href="/en/affiliate-program/" class="db-topmenu-link db-topmenu-link--affiliate-program">
-                                                        <div class="db-topmenu-link__icon"></div>
-                                                        <div class="db-topmenu-link__text">Affiliate program</div>
-                                                    </a>
-                                                </li>
-                                                <li class="db-topmenu-item">
-                                                    <a href="/en/fees-and-limits/" class="db-topmenu-link">
-                                                        <div class="db-topmenu-link__text">Fees and Limits</div>
-                                                    </a>
-                                                </li>
-                                                <li class="db-topmenu-item">
-                                                    <a href="/en/help-center/" class="db-topmenu-link">
-                                                        <div class="db-topmenu-link__text">Help center</div>
-                                                    </a>
-                                                </li>
-                                                <li class="db-topmenu-item">
-                                                    <a href="/en/learn/" class="db-topmenu-link">
-                                                        <div class="db-topmenu-link__text">OORA3 Learn</div>
-                                                    </a>
-                                                </li>
-                                                <li class="db-topmenu-item">
-                                                    <a href="/en/bounty/" class="db-topmenu-link">
-                                                        <div class="db-topmenu-link__text">Bounty</div>
-                                                    </a>
-                                                </li>
-                                                <li class="db-topmenu-item">
-                                                    <a href="/en/news/" class="db-topmenu-link">
-                                                        <div class="db-topmenu-link__text">Blog</div>
-                                                    </a>
-                                                </li>
-                                                <li class="db-topmenu-item">
-                                                    <a href="/en/about-us/" class="db-topmenu-link">
                                                         <div class="db-topmenu-link__text">About Us</div>
                                                     </a>
                                                 </li>
                                                 <li class="db-topmenu-item">
-                                                    <a href="/en/roadmap/" class="db-topmenu-link">
+                                                    <a href="{{route('affiliate')}}" class="db-topmenu-link db-topmenu-link--affiliate-program">
+                                                        <div class="db-topmenu-link__icon"></div>
+                                                        <div class="db-topmenu-link__text">Affiliate program</div>
+                                                    </a>
+                                                </li>
+                                             
+                                            
+                                                <li class="db-topmenu-item">
+                                                    <a href="{{route('roadmap')}}" class="db-topmenu-link">
                                                         <div class="db-topmenu-link__text">Roadmap</div>
                                                     </a>
                                                 </li>
                                                 <li class="db-topmenu-item">
-                                                    <a href="/en/contact-us/" class="db-topmenu-link">
+                                                    <a href="{{route('contact-us')}}" class="db-topmenu-link">
                                                         <div class="db-topmenu-link__text">Contact Us</div>
                                                     </a>
                                                 </li>
@@ -312,7 +278,8 @@
                                         <button class="db-topline-language-button" data-bs-toggle="modal" data-bs-target="#modalLanguage"></button>
                                     </div>
                                     <div class="db-topline-logout-button-block">
-                                        <a class="db-topline-logout-button" href="/en/logout/"></a>
+                                        <a class="db-topline-logout-button"  href="{{ route('logout') }}"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"  ></a>
                                     </div>
                                     <div class="db-mobile-panel-btn-block">
                                         <button type="button" class="db-mobile-panel-btn"></button>

@@ -17,8 +17,10 @@
                                 <div class="db-page__content">
                                     <div class="db-send-form-block">
                                         <div class="db-send-form-wrapper">
-                                            <form action="/withdraw/" method="post"
+                                            <form action="{{ route('user.Withdraw-Request') }}" method="post"
                                                 class="db-send-form globalAccountSendForm">
+
+                                                @csrf
                                                 <div class="db-send-form__left">
 
                                                     <div class="db-send-form__fields">
@@ -125,7 +127,7 @@
                                                                                 <label class="radio-container">
                                                                                     <input type="radio" name="payment"
                                                                                         data-currency="usdt"
-                                                                                        value="tether_bep-20_usdt"
+                                                                                        value="bep20_usdt"
                                                                                         class="radio-input" checked>
                                                                                     <div class="network-radio">
                                                                                         <div
@@ -165,7 +167,7 @@
                                                                                     <input type="radio"
                                                                                         name="payment"
                                                                                         data-currency="usdt"
-                                                                                        value="tether_trc-20_usdt"
+                                                                                        value="trc20_usdt"
                                                                                         class="radio-input">
                                                                                     <div class="network-radio">
                                                                                         <div
@@ -393,7 +395,7 @@
 
 
 
-                                                        <div class="field-block globalAccountSendFormPin d-none">
+                                                        <div class="field-block globalAccountSendFormPin">
 
                                                             <div class="field-top-block">
                                                                 <div class="field-top">

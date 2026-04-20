@@ -106,14 +106,16 @@ class WithdrawRequest extends Controller
 
     public function WithdrawRequest(Request $request)
     {
+
+    // dd($request->all());
         try {
             // Validate the form inputs
             $validation = Validator::make($request->all(), [
-                'amount' => 'required|numeric|min:1000',
-                'transaction_password' => 'required',
-                'paymentMode' => 'required',
+                'amount' => 'required|numeric|min:10',
+                'pin' => 'required',
+                'payment' => 'required',
             ], [
-                'amount.min' => 'Minimum withdrawal amount is ₹1000.',
+                'amount.min' => 'Minimum withdrawal amount is 10.',
             ]);
 
             if ($validation->fails()) {
@@ -122,21 +124,12 @@ class WithdrawRequest extends Controller
             }
 
             $user = Auth::user();
-            $transaction_password = $request->transaction_password;
+            $transaction_password = $request->pin;
 
             // Correct transaction password check
             if (!Hash::check($transaction_password, $user->tpassword)) {
                 return Redirect::back()->withErrors(['Invalid Transaction Password']);
             }
-
-            // Check if the user can withdraw 4X of their package
-            // $totalDepositSponsor = Investment::where('user_id', $user->id)->where('status', 'Active')->sum('amount');
-            // $total_get = ($totalDepositSponsor * 400 / 100) + ($user->extra_amt ?? 0);
-            // $totalWithdrawal = $user->withdraw() + $request->amount;
-
-            // if ($totalWithdrawal > $total_get) {
-            //     return Redirect::back()->withErrors(['You can\'t withdraw above 4X your Package!']);
-            // }
 
             // Check available balance
             $balance = $user->available_balance();
@@ -158,15 +151,7 @@ class WithdrawRequest extends Controller
             }
 
             // Handle account details
-            $account = null;
-            if ($request->paymentMode == "USDT.BEP20") {
-                $account = $user->usdtBep20;
-            } elseif ($request->paymentMode == "bank-transfer") {
-                $bankDetail = Bank::where('user_id', $user->id)->first();
-                if ($bankDetail) {
-                    $account = $bankDetail->account_no;
-                }
-            }
+            $account = $request->wallet;
 
             if (!$account) {
                 return Redirect::back()->withErrors(['Please update your payment address']);
@@ -180,7 +165,7 @@ class WithdrawRequest extends Controller
                 'amount' => $request->amount,
                 'account' => $account,
                 'status' => 'Pending',
-                'payment_mode' => $request->paymentMode,
+                'payment_mode' => $request->payment,
                 'walletType' => 1,
                 'wdate' => date("Y-m-d"),
             ];

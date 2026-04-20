@@ -165,9 +165,9 @@ public function sponsorUser()
     {
         return $this->hasMany('App\Models\Income', 'user_id', 'id')->where('remarks', 'Contract Profit Sharing');
     }
-     public function samerankBonus()
+     public function stakingBonus()
     {
-        return $this->hasMany('App\Models\Income', 'user_id', 'id')->where('remarks', 'Same Rank Profit Sharing');
+        return $this->hasMany('App\Models\Income', 'user_id', 'id')->where('remarks', 'Staking Reward');
     }
 
     public function level_bonus()
@@ -176,7 +176,7 @@ public function sponsorUser()
     }
     public function refer_bonus()
     {
-        return $this->hasMany('App\Models\Income', 'user_id', 'id')->where('remarks', 'Referral Income');
+        return $this->hasMany('App\Models\Income', 'user_id', 'id')->where('remarks', 'Direct Reward');
     }
 
     public function trading_profit()

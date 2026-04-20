@@ -802,7 +802,7 @@
 									<div class="OORA3-benefit-item-wrapper">
 										<div class="OORA3-benefit-item OORA3-benefit-item--uptime">
 											<div class="OORA3-benefit-item__icon"></div>
-											<div class="OORA3-benefit-item__text">Fintech Products</div>
+											<div class="OORA3-benefit-item__text">OORA3 Products</div>
 										</div>
 									</div>
 									<div class="OORA3-benefit-item-wrapper">

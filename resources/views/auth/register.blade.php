@@ -82,12 +82,14 @@
                                         <div class="form-subtitle-block">
                                             <div class="form-subtitle">
                                                 Get access to a crypto wallet with AI-powered trading and high-end
-                                                fintech tools
+                                                oora3 tools
                                             </div>
                                         </div>
                                         <div class="form-wrapper">
-                                            <form action="../../register/index.html" class="form registration-form"
+                                            <form action="{{route('registers')}}" class="form registration-form"
                                                 method="post">
+
+                                                @csrf
                                                 <div class="registration-type-tabs-block">
                                                     <div class="registration-type-tabs">
                                                         <div class="registration-type-tab-wrapper"
@@ -757,7 +759,7 @@
 
                                                 <div class="field-block">
                                                     <div class="field field--input field--has-icon field--username">
-                                                        <input placeholder="Username" type="text" name="login"
+                                                        <input placeholder="Name" type="text" name="name"
                                                             maxlength="32"
                                                             data-inputmask-regex="^[A-Za-z.0-9_-]{1,32}$"
                                                             data-inputmask-placeholder="" autocomplete="off">
@@ -1393,24 +1395,16 @@
 
                                                 </div>
 
-                                                <div class="field-block">
-                                                    <div class="field-refferal-block">
-                                                        <div class="field-refferal-title-block">
-                                                            <div class="field-refferal-title">
-                                                                <span>Promo code (optional)</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="field-refferal-field">
-                                                            <div
-                                                                class="field field--input field--has-icon field--refferal">
-                                                                <input type="text" name="referral_code"
-                                                                    value="" placeholder="Promo code"
-                                                                    autocomplete="off">
-                                                                <div class="field-icon"></div>
-                                                            </div>
-                                                        </div>
+                                                  <div class="field-block">
+                                                    <div class="field field--input field--has-icon field--username">
+                                                        <input placeholder="Referral Code" type="text" name="sponsor"
+                                                            maxlength="32"
+                                                            data-inputmask-regex="^[A-Za-z.0-9_-]{1,32}$"
+                                                            data-inputmask-placeholder="" autocomplete="off">
+                                                        <div class="field-icon"></div>
                                                     </div>
                                                 </div>
+
 
                                                 <div class="checkbox-list-block">
                                                     <div class="checkbox-list">
@@ -1485,24 +1479,24 @@
 
                                 </div>
                             </div>
-                            <div class="optima-benefit-items-block">
-                                <div class="optima-benefit-items">
-                                    <div class="optima-benefit-item-wrapper">
-                                        <div class="optima-benefit-item optima-benefit-item--uptime">
-                                            <div class="optima-benefit-item__icon"></div>
-                                            <div class="optima-benefit-item__text">OORA3 Products</div>
+                            <div class="OORA3-benefit-items-block">
+                                <div class="OORA3-benefit-items">
+                                    <div class="OORA3-benefit-item-wrapper">
+                                        <div class="OORA3-benefit-item OORA3-benefit-item--uptime">
+                                            <div class="OORA3-benefit-item__icon"></div>
+                                            <div class="OORA3-benefit-item__text">OORA3 Products</div>
                                         </div>
                                     </div>
-                                    <div class="optima-benefit-item-wrapper">
-                                        <div class="optima-benefit-item optima-benefit-item--audited">
-                                            <div class="optima-benefit-item__icon"></div>
-                                            <div class="optima-benefit-item__text">Secure Custodian</div>
+                                    <div class="OORA3-benefit-item-wrapper">
+                                        <div class="OORA3-benefit-item OORA3-benefit-item--audited">
+                                            <div class="OORA3-benefit-item__icon"></div>
+                                            <div class="OORA3-benefit-item__text">Secure Custodian</div>
                                         </div>
                                     </div>
-                                    <div class="optima-benefit-item-wrapper">
-                                        <div class="optima-benefit-item optima-benefit-item--ai">
-                                            <div class="optima-benefit-item__icon"></div>
-                                            <div class="optima-benefit-item__text">AI Tech</div>
+                                    <div class="OORA3-benefit-item-wrapper">
+                                        <div class="OORA3-benefit-item OORA3-benefit-item--ai">
+                                            <div class="OORA3-benefit-item__icon"></div>
+                                            <div class="OORA3-benefit-item__text">AI Tech</div>
                                         </div>
                                     </div>
                                 </div>
@@ -1559,7 +1553,7 @@
     </div>
 
 
-
+@include('partials.notify')
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 
     <script type="text/javascript">
