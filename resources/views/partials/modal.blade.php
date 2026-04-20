@@ -118,7 +118,7 @@
                                                                             data-currency="usdt"
                                                                             value="tether_bep-20_usdt"
                                                                             class="radio-input"
-                                                                            data-gtm-form-interact-field-id="1">
+                                                                            data-gtm-form-interact-field-id="1" checked>
                                                                         <div class="network-radio">
                                                                             <div class="network-radio__icon">
                                                                                 <div

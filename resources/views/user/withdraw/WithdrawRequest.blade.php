@@ -126,7 +126,7 @@
                                                                                     <input type="radio" name="payment"
                                                                                         data-currency="usdt"
                                                                                         value="tether_bep-20_usdt"
-                                                                                        class="radio-input">
+                                                                                        class="radio-input" checked>
                                                                                     <div class="network-radio">
                                                                                         <div
                                                                                             class="network-radio__icon">
@@ -451,7 +451,7 @@
                                                                                 class="db-send-form-summary-item__fee">
                                                                                 <div
                                                                                     class="db-send-form-summary-item__fee__amount globalAccountSendFormFee">
-                                                                                    0.00065457 USDT</div>
+                                                                                    0 USDT</div>
                                                                             </div>
 
                                                                         </div>
@@ -471,7 +471,7 @@
                                                                                 </div>
                                                                                 <div
                                                                                     class="db-send-form-summary-item__time__text">
-                                                                                    ~ 0 - 15 minutes
+                                                                                    ~ 24 - 48 hours
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -488,7 +488,7 @@
                                                                                 class="db-send-form-summary-item__receive">
                                                                                 <div
                                                                                     class="db-send-form-summary-item__receive__amount globalAccountSendFormReceive">
-                                                                                    10000.00065457 USDT</div>
+                                                                                    0 USDT</div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -520,3 +520,95 @@
         </div>
     </div>
 </div>
+
+<script>
+"use strict";
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const form = document.querySelector('.globalAccountSendForm');
+    const amountInput = form.querySelector('input[name="amount"]');
+
+    const feeEl = document.querySelector('.globalAccountSendFormFee');
+    const receiveEl = document.querySelector('.globalAccountSendFormReceive');
+
+    const MIN_AMOUNT = 10;
+    const FEE_PERCENT = 7;
+
+    function calculateWithdraw() {
+
+        let amount = parseFloat(amountInput.value);
+
+        if (!amount || amount <= 0) {
+            feeEl.innerText = "0 USDT";
+            receiveEl.innerText = "0 USDT";
+            return;
+        }
+
+        // ❗ Validation min
+        if (amount < MIN_AMOUNT) {
+            feeEl.innerText = "0 USDT";
+            receiveEl.innerText = "0 USDT";
+            return;
+        }
+
+        // ✅ Calculate fee
+        let fee = (amount * FEE_PERCENT) / 100;
+
+        // ✅ Final amount user receives
+        let receive = amount - fee;
+
+        // ✅ Update UI
+        feeEl.innerText = fee.toFixed(6) + " USDT";
+        receiveEl.innerText = receive.toFixed(6) + " USDT";
+    }
+
+    // 🔄 Live calculation
+    amountInput.addEventListener('input', calculateWithdraw);
+
+    // 🚀 Submit validation
+    form.addEventListener('submit', function (e) {
+
+        let amount = parseFloat(amountInput.value);
+        let network = document.querySelector('input[name="payment"]:checked');
+        let wallet = form.querySelector('input[name="wallet"]').value;
+
+        if (!amount || amount < MIN_AMOUNT) {
+            e.preventDefault();
+            notify('error', 'Minimum withdrawal is $10');
+            return;
+        }
+
+        if (!network) {
+            e.preventDefault();
+            notify('error', 'Please select network');
+            return;
+        }
+
+        if (!wallet || wallet.length < 10) {
+            e.preventDefault();
+            notify('error', 'Enter valid wallet address');
+            return;
+        }
+
+    });
+
+});
+</script>
+<script>
+document.querySelectorAll('input[name="payment"]').forEach(el => {
+    el.addEventListener('change', function () {
+
+        let input = document.querySelector('input[name="wallet"]');
+
+        if (this.value.includes('bep')) {
+            input.placeholder = "BEP20 (BSC) address";
+        } else if (this.value.includes('trc')) {
+            input.placeholder = "TRC20 (TRON) address";
+        }
+
+    });
+});
+</script>
+
+@include('partials.notify')
