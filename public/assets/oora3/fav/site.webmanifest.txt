@@ -1,0 +1,21 @@
+{
+  "name": "OORA3",
+  "short_name": "OORA3",
+  "icons": [
+    {
+      "src": "/assets/oora3/fav/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/oora3/fav/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "theme_color": "#020305",
+  "background_color": "#020305",
+  "display": "standalone"
+}
