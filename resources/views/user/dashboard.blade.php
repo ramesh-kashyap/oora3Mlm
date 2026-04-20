@@ -321,14 +321,13 @@
                                 <div class="field-block">
                                     <div class="field field--input field--has-icon field--refferal-web field--has-right-panel">
 
-                                        <input type="text" id="refLink"
+                                        <input type="text"  name="link"
                                             value="{{ url('/') }}?referral={{ Auth::user()->username }}"
                                             >
-
                                         <div class="field-icon"></div>
 
                                         <div class="field-right-panel">
-                                            <button class="copy-icon-button" onclick="copyRef2()">
+                                            <button class="copy-icon-button" data-clipboard-text="{{ url('/') }}?referral={{ Auth::user()->username }}">
                                                 <div class="copy-icon-button__icon"></div>
                                             </button>
                                         </div>

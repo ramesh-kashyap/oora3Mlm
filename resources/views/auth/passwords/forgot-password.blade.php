@@ -1,228 +1,337 @@
 <!DOCTYPE html>
-<html lang="en" class="h-100">
+<html lang="en">
 
 <head>
-	<!-- All Meta -->
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="author" content="DexignLab">
-	<meta name="robots" content="">
-	<meta name="keywords" content="bootstrap admin, card, clean, credit card, dashboard template, elegant, invoice, modern, money, transaction, Transfer money, user interface, wallet">
-	<meta name="description" content="Dompet is a clean-coded, responsive HTML template that can be easily customised to fit the needs of various credit card and invoice, modern, creative, Transfer money, and other businesses.">
-	<meta property="og:title" content="Dompet - Payment Admin Dashboard Bootstrap Template">
-	<meta property="og:description" content="Dompet is a clean-coded, responsive HTML template that can be easily customised to fit the needs of various credit card and invoice, modern, creative, Transfer money, and other businesses.">
-	<meta property="og:image" content="https://dompet.dexignlab.com/xhtml/social-image.png">
-	<meta name="format-detection" content="telephone=no">
-	<!-- Font Awesome 6 -->
-	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
+    <title>OORA3 - Forgot Password</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="{{ asset('') }}assets/oora3/libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('') }}assets/oora3/libs/priority-navigation-master/dist/priority-nav-core.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css">
+    <link rel="stylesheet" href="{{ asset('') }}assets/oora3/libs/bootstrap-select-1.14.0/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="{{ asset('') }}assets/oora3/libs/toastr-master/build/toastr.min.css">
+    <link rel="stylesheet" href="{{ asset('') }}assets/oora3/css/main%EF%B9%96v=32.css">
+    <link rel="stylesheet" href="{{ asset('') }}assets/oora3/css/media%EF%B9%96v=32.css">
+    <link rel="icon" type="image/png" href="{{ asset('') }}assets/oora3/fav/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="{{ asset('') }}assets/oora3/fav/favicon.svg" />
+    <link rel="shortcut icon" href="{{ asset('') }}assets/oora3/fav/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('') }}assets/oora3/fav/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="OORA3" />
+    <meta name="apple-mobile-web-app-title" content="OORA3" />
+    <link rel="manifest" href="{{ asset('') }}assets/oora3/fav/site.webmanifest.txt" />
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<!-- favicon -->
-	<link rel="shortcut icon" type="image/x-icon" href="{{asset('')}}assets/img/logo/eco.png">
-
-
-	<!-- Page Title Here -->
-	<title>Ecovillages</title>
-
-
-
-	<link href="{{asset('')}}assets/css/style1.css" rel="stylesheet">
-
+    <style>
+        .blog-detail-content a {
+            text-decoration: none;
+        }
+    </style>
 </head>
 
-<body style="background-color: #152621ff;">
-		<div class="authincation h-100">
-		<div class="container-fluid h-100">
-			<div class="row h-100">
-				<div class="col-lg-6 col-md-12 col-sm-12 mx-auto align-self-center" style="background-color: #202020;">
-					<div class="login-form">
-							<div class="text-center mb-3">
-										<a href="{{route('index')}}"><img src="{{asset('')}}assets/img/logo/ecovillage.png" width="150" height="70" alt=""></a>
-									</div>
-						<div class="text-center">
-							<h3 class="title">Fogot Password</h3>
-							<p>Sign in to your account to start using Ecovillages</p>
-						</div>
+
+<body class="page page--authorization">
+    <div class="progress-block d-none blockProgressBar">
+        <div class="progress">
+            <div class="progress__progress blockProgressBarLine" style="width: 0%"></div>
+        </div>
+    </div>
+    <div class="page-inner">
 
 
-						<form action="{{ route('submitResetPassword') }}" method="post">
-							@csrf
 
-							    @if ($errors->any())
-                            <div style="color: red; margin-bottom: 10px;">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
+        <section class="section-authorization" id="globalStart">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="s-authorization-inner">
+                            <div class="authorization-block ">
+                                <div class="authorization">
+                                    <div class="authorization-top-block">
+                                        <div class="authorization-top">
+
+                                            <div class="logo-wrapper">
+                                                <a href="{{asset('')}}" class="logo">
+                                                    <div class="logo-img">
+                                                        <img class="image"  style="width: 250px; height:100px;" src="{{asset('')}}assets/oora3/images/logo.png" alt="OORA3">
+                                                    </div>
+                                                </a>
+                                            </div>
+
+                                            <div class="language-open-modal-btn-block">
+                                                <button class="language-open-modal-btn" data-bs-toggle="modal" data-bs-target="#modalLanguage"></button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="authorization-form-block blockShowAfterPasswordRestored d-none globalStartBlock">
+                                        <div class="form-title-block">
+                                            <h2 class="form-title text-gradient">
+												Set up a password
+											</h2>
+                                        </div>
+                                        <div class="form-subtitle-block">
+                                            <div class="form-subtitle">
+                                                Use a complex password for our account security
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-wrapper">
+                                            <form action="/password/" class="form recovery-form">
+
+
+                                                <div class="field-block blockPasswordRecoverySecretCode">
+                                                    <div class="field field--input field--has-icon field--password">
+                                                        <input type="text" name="secret" maxlength="255" placeholder="Secret code" autocomplete="off">
+                                                        <div class="field-icon"></div>
+                                                    </div>
+                                                </div>
+
+
+
+
+                                                <div class="field-block">
+                                                    <div class="field field--input field--has-icon field--password field--has-right-panel">
+                                                        <input type="password" name="new_password" maxlength="255" placeholder="New password" autocomplete="off">
+                                                        <div class="field-icon"></div>
+                                                        <div class="field-right-panel">
+                                                            <div class="password-type-toggle-btn-block">
+                                                                <button class="password-type-toggle-btn"></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="field-block">
+                                                    <div class="field field--input field--has-icon field--password field--has-right-panel">
+                                                        <input type="password" name="repeat_new_password" maxlength="255" placeholder="Repeat new password" autocomplete="off">
+                                                        <div class="field-icon"></div>
+                                                        <div class="field-right-panel">
+                                                            <div class="password-type-toggle-btn-block">
+                                                                <button class="password-type-toggle-btn"></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-button-block">
+                                                    <button type="submit" class="green-gradient-btn iconed-btn">
+                                                        <div class="iconed-btn__text">Set a new password</div>
+                                                        <div class="iconed-btn__icon"></div>
+                                                    </button>
+                                                </div>
+                                                <div class="form-bottom-note-block">
+                                                    <div class="form-bottom-note">
+                                                        <a href="javascript:void(0);" onclick="$('.blockHideAfterPasswordRestored').removeClass('d-none');$('.blockShowAfterPasswordRestored').addClass('d-none');$('.blockHideAfterPasswordRestored form')[0].reset();">Back to access recovery</a>
+                                                    </div>
+                                                </div>
+                                                <input type="hidden" name="action" value="set">
+                                            </form>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+                                    <div class="authorization-form-block blockHideAfterPasswordRestored globalStartBlock">
+                                        <div class="form-title-block">
+                                            <h2 class="form-title text-gradient">
+												Recover your account
+											</h2>
+                                        </div>
+                                        <div class="form-subtitle-block">
+                                            <div class="form-subtitle">
+                                                Safe account access recovery
+                                            </div>
+                                        </div>
+
+                                        
+
+
+                                        <div class="recovery-type-tabs-content-block">
+                                            <div class="recovery-type-tabs-content">
+
+                                                <div class="recovery-type-tab-content">
+
+
+                                                    <div class="form-wrapper">
+                                                        <form action="/password/" class="form recovery-form">
+
+                                                            <div class="field-block">
+                                                                <div class="field field--input field--has-icon field--mail">
+                                                                    <input placeholder="Email" type="text" name="email" maxlength="255" autocomplete="off">
+                                                                    <div class="field-icon"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-button-block">
+                                                                <button type="submit" class="green-gradient-btn iconed-btn">
+                                                                    <div class="iconed-btn__text">Continue</div>
+                                                                    <div class="iconed-btn__icon"></div>
+                                                                </button>
+                                                            </div>
+                                                            <div class="form-bottom-note-block">
+                                                                <div class="form-bottom-note">
+                                                                    I have a secret code <a href="javascript:void(0)" onclick="$('.blockHideAfterPasswordRestored').addClass('d-none');$('.blockShowAfterPasswordRestored').removeClass('d-none');$('.blockPasswordRecoverySecretCode').removeClass('d-none');$('.blockShowAfterPasswordRestored form')[0].reset();">Set a new password</a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-bottom-note-block">
+                                                                <div class="form-bottom-note">
+                                                                    <a href="javascript:void(0)" onclick="$('.blockHideAfterPasswordRestored').addClass('d-none');$('.blockHideFor2FAAuth').removeClass('d-none');$('.blockHideFor2FAAuth form')[0].reset();">Back to Log In</a>
+                                                                </div>
+                                                            </div>
+                                                            <input type="hidden" name="type" value="email">
+                                                        </form>
+                                                    </div>
+
+
+                                                </div>
+
+                                            
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+
+
+
+
+
+
+
+
+
+                                </div>
                             </div>
-                            @endif
-
-                            {{-- Success Notification --}}
-                            @if(session('notify'))
-                            <div style="color: green; margin-bottom: 10px;">
-                                @foreach(session('notify') as $n)
-                                <p>{{ $n[1] }}</p>
-                                @endforeach
+                            <div class="OORA3-benefit-items-block">
+                                <div class="OORA3-benefit-items">
+                                    <div class="OORA3-benefit-item-wrapper">
+                                        <div class="OORA3-benefit-item OORA3-benefit-item--uptime">
+                                            <div class="OORA3-benefit-item__icon"></div>
+                                            <div class="OORA3-benefit-item__text">OORA3 Products</div>
+                                        </div>
+                                    </div>
+                                    <div class="OORA3-benefit-item-wrapper">
+                                        <div class="OORA3-benefit-item OORA3-benefit-item--audited">
+                                            <div class="OORA3-benefit-item__icon"></div>
+                                            <div class="OORA3-benefit-item__text">Secure Custodian</div>
+                                        </div>
+                                    </div>
+                                    <div class="OORA3-benefit-item-wrapper">
+                                        <div class="OORA3-benefit-item OORA3-benefit-item--ai">
+                                            <div class="OORA3-benefit-item__icon"></div>
+                                            <div class="OORA3-benefit-item__text">AI Tech</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            @endif
-							<div class="mb-4">
-								<label class="mb-1 text-dark">Email</label>
-								<input type="email" class="form-control" style="background:#161717;border-color:#2B2B2B;" name="email" placeholder="Enter email"  required>
-							</div>
-
-							<div class="mb-4 position-relative">
-								<label class="mb-1 text-dark">Verification Code</label>
-								<div class="input-group" >
-									<input type="text" style="background:#161717;border-color:#2B2B2B;" class="form-control" name="code" placeholder="Enter Code" required>
-									<div class="">
-										<!-- Send Button with Countdown -->
-
-										<button type="button" style="width:40px;height:56px;background-color: #202020;color:white;border-radius: 0 1rem 1rem 0;border:1px solid #31303c;" class="btn" id="sendButton" onclick="sendVerificationCode()">
-											<span id="buttonLabel" style="margin: -12px;font-size:15px;">Send</span>
-											<span id="countdownTimer" style="display: none;margin: -12px;font-size:18px;"></span>
-										</button>
-
-									</div>
-
-								</div>
-							</div>
 
 
-							<div class="mb-4 position-relative">
-								<label class="mb-1 text-dark">New Password</label>
-								<input type="password" name="password"style="background:#161717;border-color:#2B2B2B;" placeholder="Enter new password"  class="form-control" id="newPassword" required>
-								<span class="show-pass eye" onclick="togglePassword('newPassword', 'eye1', 'eyeSlash1')">
-									<i class="fa fa-eye-slash" id="eyeSlash1" style="display: none;"></i>
-									<i class="fa fa-eye" id="eye1"></i>
-								</span>
-							</div>
+                        </div>
 
-							<div class="mb-4 position-relative">
-								<label class="mb-1 text-dark">Confirm Password</label>
-								<input type="password" style="background:#161717; border-color:#2B2B2B;"name="password_confirmation"  placeholder="Enter confirm password" class="form-control" id="confirmPassword" required>
-								<span class="show-pass eye" onclick="togglePassword('confirmPassword', 'eye2', 'eyeSlash2')">
-									<i class="fa fa-eye-slash" id="eyeSlash2" style="display: none;"></i>
-									<i class="fa fa-eye" id="eye2"></i>
-								</span>
-							</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-							<div class="form-row d-flex justify-content-between mt-4 mb-2">
-								<div class="mb-4">
-									<div class="form-check custom-checkbox mb-3">
-										<input type="checkbox" class="form-check-input" id="customCheckBox1" required>
-										<label class="form-check-label mt-1" for="customCheckBox1">Remember my preference</label>
-									</div>
-								</div>
-								<div class="mb-4">
-									<a href="{{ route('login') }}" class="btn-link text-primary">Sign in?</a>
-								</div>
-							</div>
+    </div>
+    <div class="cookies-block d-none" id="modalCookie">
 
-							<div class="text-center mb-4">
-								<button type="submit" class="btn btn-primary btn-block"style="background-color: #20c997;">Reset Password</button>
-							</div>
-						</form>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="cookies">
+                        <div class="cookies__left">
+                            <div class="cookies__icon"></div>
+                            <div class="cookies__content">
+                                <div class="cookies__title">
+                                    Cookie Consent
+                                </div>
+                                <div class="cookies__descr">
+                                    We use cookies (and similar technologies) to improve our service and enhance your experience on our website.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cookies__right">
+                            <div class="cookies__buttons-block">
+                                <div class="cookies__buttons">
+                                    <div class="cookies__button-wrapper">
+                                        <button type="button" onclick="acceptCookie();" class="cookies__accept-button green-gradient-btn button--small">
+                                            Accept
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-					</div>
-				</div>
-				<!-- <div class="col-xl-6 col-lg-6">
-					<div class="pages-left h-100" data-theme-version="dark">
-						<div class="login-content">
-							<a href="index.html"><img src="{{asset('')}}assets/images/logo-full.png" class="mb-3" alt=""></a>
+    </div>
 
-							<p style="color: #fff;">Your true value is determined by how much more you give in value than you take in payment. ...</p>
-						</div>
-						<div class="login-media text-center"style="filter: invert(84%) sepia(88%) saturate(747%) hue-rotate(85deg) brightness(60%) contrast(139%)
-">
-							<img src="{{asset('')}}assets/images/login.png" alt="">
-						</div>
-					</div>
-				</div> -->
-			</div>
-		</div>
-	</div>
-	@include('partials.notify')
 
-	<script>
-		function sendVerificationCode() {
-    const email = document.querySelector('input[name="email"]').value;
-    const sendButton = document.getElementById('sendButton');
-    const buttonLabel = document.getElementById('buttonLabel');
-    const countdownTimer = document.getElementById('countdownTimer');
 
-    if (!email) {
-        notify("Please enter your email first.", "warning");
-        return;
-    }
 
-    // Disable button
-    sendButton.disabled = true;
-    buttonLabel.style.display = 'none';
-    countdownTimer.style.display = 'inline';
+    @include('partials.notify')
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 
-    let countdown = 60;
-    countdownTimer.textContent = `${countdown}s`;
+    <script type="text/javascript">
+        var pusher = new Pusher('5970cd7bd1747b68d15a', {
+            cluster: 'us2'
+        });
+        var publicChannel = pusher.subscribe('public');
+        publicChannel.bind('end', function(data) {
+            processPusherPublic(data);
+        });
+    </script>
 
-    const timerInterval = setInterval(() => {
-        countdown--;
-        countdownTimer.textContent = `${countdown}s`;
+    <script src="https://telegram.org/js/telegram-widget.js"></script>
+    <script src="{{ asset('') }}assets/oora3/libs/jquery/jquery-3.6.0.min.js" defer></script>
+    <script defer src="{{ asset('') }}assets/oora3/libs/priority-navigation-master/dist/priority-nav.min.js"></script>
+    <script defer src="{{ asset('') }}assets/oora3/libs/priority-navigation-master/dist/priority-nav-db.min.js">
+    </script>
+    <script defer src="{{ asset('') }}assets/oora3/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script defer src="{{ asset('') }}assets/oora3/libs/bootstrap-select-1.14.0/dist/js/bootstrap-select.min.js">
+    </script>
+    <script defer src="{{ asset('') }}assets/oora3/libs/bootstrap-select-1.14.0/dist/js/i18n/defaults-en_US.min.js">
+    </script>
+    <script defer src="{{ asset('') }}assets/oora3/libs/clipboard.js-master/dist/clipboard.min.js"></script>
+    <script defer src="{{ asset('') }}assets/oora3/libs/autosize/autosize.min.js"></script>
+    <script defer src="{{ asset('') }}assets/oora3/libs/toastr-master/build/toastr.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8-beta.17/jquery.inputmask.min.js">
+    </script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.14.1/jquery-ui.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/mobile-detect/1.4.5/mobile-detect.min.js"></script>
+    <script src="{{ asset('') }}assets/oora3/js/common%EF%B9%96v=32.js" defer></script>
 
-        if (countdown <= 0) {
-            clearInterval(timerInterval);
-            countdownTimer.style.display = 'none';
-            buttonLabel.style.display = 'inline';
-            sendButton.disabled = false;
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HQ7BFBXWDV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
         }
-    }, 1000);
+        gtag('js', new Date());
 
-    // API Call
-    fetch("{{ route('send-reset-code') }}", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRF-TOKEN": "{{ csrf_token() }}"
-        },
-        body: JSON.stringify({ email: email })
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.message) {
-            notify(data.message, "success");
-        } else {
-            notify("Something went wrong.", "error");
-        }
-    })
-    .catch(err => {
-        notify("The selected email is invalid.", "error");
-        console.error(err);
-    });
-}
+        gtag('config', 'G-HQ7BFBXWDV');
+    </script>
+    <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=9e95e9bc-a6c0-4131-902f-b645902e2ae8">
+    </script>
 
-	</script>
-
-	<script>
-		function togglePassword() {
-			const input = document.getElementById("passwordInput");
-			const closeeyeIcon = document.getElementById("closeeyeIcon");
-			const eyeIcon = document.getElementById("eyeIcon");
-
-			if (input.type === "password") {
-				input.type = "text";
-				closeeyeIcon.style.display = "inline-block"; // Show the closed eye
-				eyeIcon.style.display = "none"; // Hide the open eye
-			} else {
-				input.type = "password";
-				closeeyeIcon.style.display = "none"; // Hide the closed eye
-				eyeIcon.style.display = "inline-block"; // Show the open eye
-			}
-		}
-	</script>
-	<script src="vendor/global/global.min.js"></script>
-	<script src="js/custom.min.js"></script>
-	<script src="js/dlabnav-init.js"></script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"14dc89e34efd48bc85aa4f8e67cfc71b","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
+    crossorigin="anonymous"></script>
 
 </body>
 
