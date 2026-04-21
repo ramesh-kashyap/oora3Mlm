@@ -79,6 +79,76 @@ class WithdrawRequest extends Controller
     return $this->dashboard_layout();
 }
 
+
+   public function walletStore(Request $request)
+
+    {
+
+        $request->validate([
+
+            'wallet' => 'required|string|max:255',
+
+            'payment' => 'required|string',
+
+        ]);
+
+        $userId = Auth::id();
+
+        // Extract blockchain from payment (example: tether_bep-20_usdt)
+
+        $blockchain = $request->payment;
+
+        // Check if wallet already exists for this user + blockchain
+
+        $existing = \DB::table('wallets')
+
+            ->where('user_id', $userId)
+
+            ->where('blockchain', $blockchain)
+
+            ->first();
+
+        if ($existing) {
+
+            // UPDATE
+
+            \DB::table('wallets')
+
+                ->where('id', $existing->id)
+
+                ->update([
+
+                    'wallet_address' => $request->wallet,
+
+                    'created_at' => now()
+
+                ]);
+
+              return redirect()->back()->with('notify', [['success', 'Wallet updated successfully']]);
+
+
+        } else {
+
+            // INSERT
+
+            \DB::table('wallets')->insert([
+
+                'user_id' => $userId,
+
+                'wallet_address' => $request->wallet,
+
+                'blockchain' => $blockchain,
+
+                'created_at' => now()
+
+            ]);
+
+             return redirect()->back()->with('notify', [['success', 'Wallet updated successfully']]);
+
+        }
+
+    }
+
     public function withdrawStatus()
     {
         $withdraws = Withdraw::paginate(10);  // Fetch all records using Eloquent
@@ -348,6 +418,15 @@ class WithdrawRequest extends Controller
 
     public function withdrawInfo()
     {
-        return view('user.withdraw.withdrawalinfo');
+         $wallets = \DB::table('wallets')
+
+        ->where('user_id', auth()->id())
+
+        ->latest()
+
+        ->get();
+        $this->data['wallets'] = $wallets;
+         $this->data['page'] = 'user.withdraw.withdrawalinfo';
+        return $this->dashboard_layout();
     }
 }

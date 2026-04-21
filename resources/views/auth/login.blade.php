@@ -906,22 +906,7 @@
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.14.1/jquery-ui.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/mobile-detect/1.4.5/mobile-detect.min.js"></script>
     <script src="{{ asset('') }}assets/oora3/js/common%EF%B9%96v=32.js" defer></script>
-
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HQ7BFBXWDV"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'G-HQ7BFBXWDV');
-    </script>
-    <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=9e95e9bc-a6c0-4131-902f-b645902e2ae8">
-    </script>
-
+ 
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516"
         integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg=="
         data-cf-beacon='{"version":"2024.11.0","token":"14dc89e34efd48bc85aa4f8e67cfc71b","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'

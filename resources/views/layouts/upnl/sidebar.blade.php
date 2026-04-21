@@ -27,12 +27,7 @@
                                                     <div class="db-menu-link__text">Transactions</div>
                                                 </a>
                                             </li>
-                                            <li class="db-menu-item">
-                                                <a href="javascript:void(0)" class="db-menu-link db-menu-link--ai-staking" data-module="menu" data-section="staking">
-                                                    <div class="db-menu-link__icon"></div>
-                                                    <div class="db-menu-link__text">AI Staking</div>
-                                                </a>
-                                            </li>
+                                            
                                             <li class="db-menu-item">
                                                 <a href="javascript:void(0)" class="db-menu-link db-menu-link--loans" data-module="menu" data-section="loans">
                                                     <div class="db-menu-link__icon"></div>
@@ -46,19 +41,19 @@
                                                 </a>
                                             </li>
                                             <li class="db-menu-item">
-                                                <a href="javascript:void(0)" class="db-menu-link db-menu-link--affiliate-program" data-module="menu" data-section="partners">
+                                                <a href="{{route('user.level-team')}}" class="db-menu-link db-menu-link--affiliate-program" data-module="menu" data-section="partners">
                                                     <div class="db-menu-link__icon"></div>
                                                     <div class="db-menu-link__text">Partners</div>
                                                 </a>
                                             </li>
                                             <li class="db-menu-item">
-                                                <a href="javascript:void(0)" class="db-menu-link db-menu-link--tasks" data-module="menu" data-section="tasks">
+                                                <a href="{{route('user.withdrawinfo')}}" class="db-menu-link db-menu-link--tasks" data-module="menu" data-section="tasks">
                                                     <div class="db-menu-link__icon"></div>
-                                                    <div class="db-menu-link__text">Tasks</div>
+                                                    <div class="db-menu-link__text">Payment Address</div>
                                                 </a>
                                             </li>
                                             <li class="db-menu-item">
-                                                <a href="javascript:void(0)" data-module="menu" data-section="settings" class="db-menu-link db-menu-link--settings">
+                                                <a href="{{route('user.profile')}}" data-module="menu" data-section="settings" class="db-menu-link db-menu-link--settings">
                                                     <div class="db-menu-link__icon"></div>
                                                     <div class="db-menu-link__text">Settings</div>
                                                 </a>

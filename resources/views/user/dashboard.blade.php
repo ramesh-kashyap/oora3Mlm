@@ -94,13 +94,13 @@
                 }
 
                 .cd-card-header h3 {
-                    color: #aaa;
-                    font-size: 14px;
+                    color: #ffffff;
+                    font-size: 19px;
                 }
 
                 .cd-card-header span {
                     font-size: 12px;
-                    color: #666;
+                    color: #ffffff;
                 }
 
                 /* BUTTON */
@@ -522,23 +522,23 @@
                         justify-content: center;
                     }
                 }
-                .cd-chart {
-    margin-top: 18px;
-    height: 110px;
-    position: relative;
-}
 
-/* soft fade bottom */
-.cd-chart::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 40px;
-    background: linear-gradient(to top, #0c0c0c, transparent);
-}
-                
+                .cd-chart {
+                    margin-top: 18px;
+                    height: 110px;
+                    position: relative;
+                }
+
+                /* soft fade bottom */
+                .cd-chart::after {
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    height: 40px;
+                    background: linear-gradient(to top, #0c0c0c, transparent);
+                }
             </style>
             <div class="col-12">
                 <div class="db-page">
@@ -619,11 +619,11 @@
 
                                             <!-- Growth Chart -->
 
-<div class="cd-chart">
+                                            <div class="cd-chart">
 
-    <canvas id="growthChart"></canvas>
+                                                <canvas id="growthChart"></canvas>
 
-</div>
+                                            </div>
 
                                         </div>
 
@@ -825,10 +825,11 @@
 
                                         <!-- Right -->
                                         <div class="ref-right">
-                                            <input type="text" value="{{ route('register', ['ref' => Auth::user()->username]) }}" id="referralLink"
-                                                readonly>
+                                            <input type="text"
+                                                value="{{ route('register', ['ref' => Auth::user()->username]) }}"
+                                                id="referralLink" readonly>
 
-                                           <button class="copy-btn" onclick="copyReferral(this)">
+                                            <button class="copy-btn" onclick="copyReferral(this)">
                                                 <i data-lucide="copy"></i>
                                                 Copy
                                             </button>
@@ -848,109 +849,116 @@
     </div>
 </div>
 <script>
-function copyReferral(btn) {
-    const input = btn.parentElement.querySelector("input");
+    function copyReferral(btn) {
+        const input = btn.parentElement.querySelector("input");
 
-    // Copy text
-    navigator.clipboard.writeText(input.value).then(() => {
-        btn.innerHTML = "Copied ✓";
+        // Copy text
+        navigator.clipboard.writeText(input.value).then(() => {
+            btn.innerHTML = "Copied ✓";
 
-        setTimeout(() => {
-            btn.innerHTML = '<i data-lucide="copy"></i> Copy';
-            lucide.createIcons();
-        }, 1500);
-    }).catch(() => {
-        // fallback (older browsers)
-        input.select();
-        document.execCommand("copy");
-        btn.innerHTML = "Copied ✓";
-    });
-}
+            setTimeout(() => {
+                btn.innerHTML = '<i data-lucide="copy"></i> Copy';
+                lucide.createIcons();
+            }, 1500);
+        }).catch(() => {
+            // fallback (older browsers)
+            input.select();
+            document.execCommand("copy");
+            btn.innerHTML = "Copied ✓";
+        });
+    }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-        const growthData = @json($growthData);
+    const growthData = @json($growthData);
 
-document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
 
-    const ctx = document.getElementById('growthChart').getContext('2d');
+        const ctx = document.getElementById('growthChart').getContext('2d');
 
-    const gradient = ctx.createLinearGradient(0, 0, 0, 120);
+        const gradient = ctx.createLinearGradient(0, 0, 0, 120);
 
-    gradient.addColorStop(0, "rgba(22,255,142,0.35)");
+        gradient.addColorStop(0, "rgba(22,255,142,0.35)");
 
-    gradient.addColorStop(1, "rgba(22,255,142,0)");
+        gradient.addColorStop(1, "rgba(22,255,142,0)");
 
-    new Chart(ctx, {
+        new Chart(ctx, {
 
-        type: 'line',
+            type: 'line',
 
-        data: {
+            data: {
 
-            labels: growthData, // hidden anyway
+                labels: growthData, // hidden anyway
 
-            datasets: [{
+                datasets: [{
 
-                data: growthData,
+                    data: growthData,
 
-                borderColor: '#16ff8e',
+                    borderColor: '#16ff8e',
 
-                backgroundColor: gradient,
+                    backgroundColor: gradient,
 
-                borderWidth: 2,
+                    borderWidth: 2,
 
-                fill: true,
+                    fill: true,
 
-                tension: 0.45,
+                    tension: 0.45,
 
-                pointRadius: 0,
+                    pointRadius: 0,
 
-                pointHoverRadius: 0
+                    pointHoverRadius: 0
 
-            }]
-
-        },
-
-        options: {
-
-            responsive: true,
-
-            maintainAspectRatio: false,
-
-            plugins: {
-
-                legend: { display: false },
-
-                tooltip: { enabled: false } // ❌ no popup
+                }]
 
             },
 
-            scales: {
+            options: {
 
-                x: { display: false },
+                responsive: true,
 
-                y: { display: false }
+                maintainAspectRatio: false,
 
-            },
+                plugins: {
 
-            elements: {
+                    legend: {
+                        display: false
+                    },
 
-                point: {
+                    tooltip: {
+                        enabled: false
+                    } // ❌ no popup
 
-                    radius: 0
+                },
+
+                scales: {
+
+                    x: {
+                        display: false
+                    },
+
+                    y: {
+                        display: false
+                    }
+
+                },
+
+                elements: {
+
+                    point: {
+
+                        radius: 0
+
+                    }
 
                 }
 
             }
 
-        }
+        });
 
     });
-
-});
 </script>
 <script>
     lucide.createIcons();
 </script>
-

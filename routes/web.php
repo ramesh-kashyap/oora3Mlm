@@ -164,6 +164,7 @@ Route::get('/withdrawPrinciple', [App\Http\Controllers\UserPanel\WithdrawRequest
 Route::get('/payment-ledger', [App\Http\Controllers\UserPanel\WithdrawRequest::class, 'payment'])->name('user.paymentledger');
 
 Route::post('/WithdrawRequest', [App\Http\Controllers\UserPanel\WithdrawRequest::class, 'WithdrawRequest'])->name('user.Withdraw-Request');
+Route::post('/walletStore', [App\Http\Controllers\UserPanel\WithdrawRequest::class, 'walletStore'])->name('user.walletStore');
 Route::post('/WithdrawRequestPrinciple', [App\Http\Controllers\UserPanel\WithdrawRequest::class, 'WithdrawRequestPrinciple'])->name('user.WithdrawRequestPrinciple');
 Route::get('/WithdrawHistory', [App\Http\Controllers\UserPanel\WithdrawRequest::class, 'WithdrawHistory'])->name('user.Withdraw-History');
 // end withdraw
