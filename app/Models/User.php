@@ -161,18 +161,18 @@ public function sponsorUser()
     {
         return $this->hasMany('App\Models\Income', 'user_id', 'id')->where('remarks', 'Salary Income');
     }
-     public function contractpBonus()
+     public function stakingRefBonus()
     {
-        return $this->hasMany('App\Models\Income', 'user_id', 'id')->where('remarks', 'Contract Profit Sharing');
+        return $this->hasMany('App\Models\Income', 'user_id', 'id')->where('remarks', 'Staking Referral Reward');
     }
      public function stakingBonus()
     {
         return $this->hasMany('App\Models\Income', 'user_id', 'id')->where('remarks', 'Staking Reward');
     }
 
-    public function level_bonus()
+    public function teamDevelopmentReward()
     {
-        return $this->hasMany('App\Models\Income', 'user_id', 'id')->where('remarks', 'Farming Income');
+        return $this->hasMany('App\Models\Income', 'user_id', 'id')->where('remarks', 'Team Development Reward');
     }
     public function refer_bonus()
     {
@@ -229,7 +229,7 @@ public function sponsorUser()
 
     public function club_bonus()
     {
-        return $this->hasMany('App\Models\Income', 'user_id', 'id')->where('remarks', 'Club Income');
+        return $this->hasMany('App\Models\Income', 'user_id', 'id')->where('remarks', 'Club Reward');
     }
 
 

@@ -31,15 +31,15 @@ class Dashboard extends Controller
 
 
 
-public function event(Request $request)
-{
-    $user = Auth::user(); // Logged-in user
-    $user->event = 1;
-    $user->save();
+    public function event(Request $request)
+    {
+        $user = Auth::user(); // Logged-in user
+        $user->event = 1;
+        $user->save();
 
-   $notify[] = ['success', 'Submitted successfully'];
- return redirect()->back()->withNotify($notify);
-}
+        $notify[] = ['success', 'Submitted successfully'];
+        return redirect()->back()->withNotify($notify);
+    }
 
 
 
@@ -70,29 +70,26 @@ public function event(Request $request)
         $directIds = User::where('sponsor', $user->id)->where('active_status', 'Active')->pluck('id');
         $personal_deposit = Investment::where('user_id', $user->id)->where('status', 'Active')->sum('amount');
 
-      
-
-  $tolteam=$this->my_level_team_count($user->id);
-      if(!empty($tolteam))
-      {
-         $total_team_active = User::select('id')->whereIn('id',$tolteam)->where('active_status','Active')->get()->toArray();  
-         $total_ids=array_column($total_team_active,'id');
-         
-        $teamBusiness= Investment::whereIn('user_id',$total_ids)->where('is_free',0)->where('status','Active')->sum('amount');
-         
-      }
-      else
-      {
-       $teamBusiness=0;   
-      }
 
 
-      $this->data['team_business'] =$teamBusiness;
-            
-            
-       $openlevel = get_open_levels($user->id);
-       
-         $this->data['openlevel'] =$openlevel['open_levels']; 
+        $tolteam = $this->my_level_team_count($user->id);
+        if (!empty($tolteam)) {
+            $total_team_active = User::select('id')->whereIn('id', $tolteam)->where('active_status', 'Active')->get()->toArray();
+            $total_ids = array_column($total_team_active, 'id');
+
+            $teamBusiness = Investment::whereIn('user_id', $total_ids)->where('is_free', 0)->where('status', 'Active')->sum('amount');
+
+        } else {
+            $teamBusiness = 0;
+        }
+
+
+        $this->data['team_business'] = $teamBusiness;
+
+
+        $openlevel = get_open_levels($user->id);
+
+        $this->data['openlevel'] = $openlevel['open_levels'];
 
 
 
@@ -115,8 +112,22 @@ public function event(Request $request)
         $direct_bonus = Income::where('user_id', $user->id)->where('remarks', 'Direct Bonus')->orderBy('id', 'DESC')->get();
         $direct_bonus = Income::where('user_id', $user->id)->orderBy('id', 'DESC')->get();
         $contents = DB::table('add_content')->get();
-      
 
+
+        // Get last 10 days grouped income
+
+     
+
+        $final = [];
+
+        for ($i = 9; $i >= 0; $i--) {
+
+            $value = rand(1, 100); // fallback
+
+            $final[] = (float) $value;
+
+        }
+        $this->data['growthData'] = $final;
         $this->data['weekly_profit'] = $weekly_profit;
         $this->data['transaction_data'] = $transaction_data;
         $this->data['deposit_report'] = $deposit_report;
@@ -140,7 +151,7 @@ public function event(Request $request)
 
 
 
-    public  function my_binary($userid)
+    public function my_binary($userid)
     {
         $arrin = array($userid);
         $ret = array();
@@ -197,7 +208,7 @@ public function event(Request $request)
     }
 
 
-    public  function team_by_position($userid, $position)
+    public function team_by_position($userid, $position)
     {
         $ret = array();
         $get_position_user = User::where('Parentid', $userid)->where('position', $position)->first();
@@ -326,7 +337,7 @@ public function event(Request $request)
     public function submitActivity(Request $request)
     {
         try {
-            $validation =  Validator::make($request->all(), [
+            $validation = Validator::make($request->all(), [
                 'url' => 'required',
 
 

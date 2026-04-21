@@ -17,6 +17,8 @@
     <link rel="shortcut icon" href="{{asset('')}}assets/oora3/fav/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="{{asset('')}}assets/oora3/fav/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="OORA3" />
+    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+    <script src="https://unpkg.com/lucide@latest"></script>
 
 <style>
         .blog-detail-content a {

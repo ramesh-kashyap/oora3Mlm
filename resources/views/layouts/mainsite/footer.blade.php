@@ -1,3 +1,4 @@
+@include('partials.modal')
 <footer>
     <div class="footer-content-block">
         <div class="container">
